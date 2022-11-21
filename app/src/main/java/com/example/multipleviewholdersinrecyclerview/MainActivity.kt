@@ -12,7 +12,7 @@ import com.example.multipleviewholdersinrecyclerview.multiplview.MultipleViewDat
 import com.example.multipleviewholdersinrecyclerview.multiplview.OfflineDataSource.TYPE_BODY
 import com.example.multipleviewholdersinrecyclerview.multiplview.OfflineDataSource.TYPE_HEADER
 import com.example.multipleviewholdersinrecyclerview.multiplview.OfflineDataSource.getBodyData
-import com.example.multipleviewholdersinrecyclerview.multiplview.OfflineDataSource.setMultipleViewData
+import com.example.multipleviewholdersinrecyclerview.multiplview.setMultipleViewData
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         // multipleViewAdapter = MultipleViewAdapter()
         // Log.e("M_ACTIVITY", "${multipleViewData}")
-        multipleViewAdapter.updateAllData(setMultipleViewData(getBodyData()).toMutableList())
+        multipleViewAdapter.updateAllData(setMultipleViewData(getBodyData()))
 
 
 
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun inflateRecyclerView(itemsRV: ArrayList<MultipleViewData>? = null) {
+    private fun inflateRecyclerView(itemsRV:List<MultipleViewData>? = null) {
         /* if (itemsRV!!.isEmpty()) {
              binding.tvWhenEmpty.visibility = View.VISIBLE
              binding.recyclerView.visibility = View.GONE

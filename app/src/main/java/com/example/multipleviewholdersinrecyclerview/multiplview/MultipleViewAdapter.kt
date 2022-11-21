@@ -1,20 +1,24 @@
 package com.example.multipleviewholdersinrecyclerview.multiplview
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.multipleviewholdersinrecyclerview.databinding.ItemBodyLayoutBinding
 import com.example.multipleviewholdersinrecyclerview.databinding.ItemTitleLayoutBinding
 import com.example.multipleviewholdersinrecyclerview.multiplview.OfflineDataSource.TYPE_BODY
 import com.example.multipleviewholdersinrecyclerview.multiplview.OfflineDataSource.TYPE_HEADER
+import java.util.*
+import kotlin.collections.ArrayList
 
-class MultipleViewAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    /* ListAdapter<MultipleViewData, RecyclerView.ViewHolder>(
+class MultipleViewAdapter() : //RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+     ListAdapter<MultipleViewData, ViewHolder>(
          DIFF_UTIL_RECENT
-     ) {*/
+     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
             TYPE_HEADER -> {
@@ -36,21 +40,11 @@ class MultipleViewAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 )
             }
             else -> throw IllegalArgumentException("Invalid ViewType Provided")
-            // else -> {
-            // IllegalArgumentException("Invalid Item")
-            /*MultipleViewHolder.BodyViewHolder(
-                ItemBodyLayoutBinding.inflate(
-                    LayoutInflater.from(
-                        parent.context
-                    ), parent, false
-                )
-            )*/
-            // }
+
         }
     }
 
     private val model: ArrayList<MultipleViewData> = ArrayList()
-    // private val model =getItem()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (holder) {
@@ -79,6 +73,8 @@ class MultipleViewAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         model.addAll(list)
         notifyDataSetChanged()
     }
+
+
 }
 
 
@@ -101,4 +97,32 @@ private val DIFF_UTIL_RECENT = object : DiffUtil.ItemCallback<MultipleViewData>(
 
 interface OnMultipleViewAdapterItemListener {
     fun onItemClicked(view: View, model: MultipleViewData)
+}
+
+fun setMultipleViewData(events: ArrayList<MultipleViewData.BodyData>): MutableList<MultipleViewData> {
+    val listItem = arrayListOf<MultipleViewData>()
+    val mutableMap: MutableMap<String, MutableList<MultipleViewData.BodyData>> = TreeMap()
+    events.forEach{event->
+        var bodyDataMutableList: MutableList<MultipleViewData.BodyData>? =
+            mutableMap[event.getDataTitle()]
+        if (bodyDataMutableList == null) {
+            bodyDataMutableList = ArrayList()
+            mutableMap[event.getDataTitle()] = bodyDataMutableList
+        }
+        bodyDataMutableList.add(event)
+    }
+
+    val assetMap: Map<String, List<MultipleViewData.BodyData>?> = mutableMap
+    Log.e(" : assetMap", assetMap.toString())
+
+
+    for (date in assetMap.keys) {
+        val titleData = MultipleViewData.TitleData(date)
+        listItem.add(titleData)
+        for (event in assetMap[date]!!) {
+            listItem.add(event)
+            Log.e("bodyDataMutableList: 2 ", event.toString())
+        }
+    }
+    return listItem
 }

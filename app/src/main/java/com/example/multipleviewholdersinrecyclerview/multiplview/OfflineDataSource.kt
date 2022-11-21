@@ -24,31 +24,4 @@ object OfflineDataSource {
     }
 
 
-    fun setMultipleViewData(events: ArrayList<MultipleViewData.BodyData>): List<MultipleViewData> {
-        val listItem = arrayListOf<MultipleViewData>()
-        val mutableMap: MutableMap<String, MutableList<MultipleViewData.BodyData>> = TreeMap()
-        events.forEach{event->
-            var bodyDataMutableList: MutableList<MultipleViewData.BodyData>? =
-                mutableMap[event.getDataTitle()]
-            if (bodyDataMutableList == null) {
-                bodyDataMutableList = ArrayList()
-                mutableMap[event.getDataTitle()] = bodyDataMutableList
-            }
-            bodyDataMutableList.add(event)
-        }
-
-        val assetMap: Map<String, List<MultipleViewData.BodyData>?> = mutableMap
-        Log.e(" : assetMap", assetMap.toString())
-
-
-        for (date in assetMap.keys) {
-            val titleData = MultipleViewData.TitleData(date)
-            listItem.add(titleData)
-            for (event in assetMap[date]!!) {
-                listItem.add(event)
-                Log.e("bodyDataMutableList: 2 ", event.toString())
-            }
-        }
-        return listItem
-    }
 }
