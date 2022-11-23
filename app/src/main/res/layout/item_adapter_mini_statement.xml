@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootTransaction"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="@android:color/transparent"
+    android:elevation="5dp"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvReceiverName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="@font/nunitosans_semibold_common"
+            android:gravity="start"
+            android:padding="4dp"
+            android:textColor="@color/purple_700"
+            app:layout_constraintBottom_toTopOf="@+id/vProvider"
+            app:layout_constraintEnd_toStartOf="@id/tvAmount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Name: Kambula Ngao" />
+
+        <TextView
+            android:id="@+id/tvAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="@font/nunitosans_semibold_common"
+            android:gravity="end"
+            android:lines="1"
+            android:textColor="@color/purple_700"
+            app:layout_constraintBottom_toBottomOf="@id/tvReceiverName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvReceiverName"
+            app:layout_constraintTop_toTopOf="@id/tvReceiverName"
+            tools:text="59 0000 F" />
+
+        <View
+            android:id="@+id/vProvider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/purple_200"
+            app:layout_constraintTop_toBottomOf="@id/tvReceiverName" />
+
+        <TextView
+            android:id="@+id/tvAccountNo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/nunitosans_regular_common"
+            android:gravity="start"
+            android:padding="4dp"
+            android:textColor="@color/purple_700"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vProvider"
+            tools:text="ACCOUNT:123456" />
+
+
+        <TextView
+            android:id="@+id/tvDescriptionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/nunitosans_semibold_common"
+            android:gravity="start"
+            android:singleLine="true"
+            android:text="Reason:"
+            android:padding="4dp"
+            android:textColor="@color/purple_700"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAccountNo" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="@color/purple_700"
+            android:fontFamily="@font/nunitosans_semibold_common"
+            android:gravity="start"
+            android:padding="4dp"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_700"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDescriptionLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvDescriptionLabel"
+            app:layout_constraintTop_toTopOf="@+id/tvDescriptionLabel"
+            app:strokeColor="@color/purple_700"
+            app:strokeWidth="2dp"
+            tools:text="Payment" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

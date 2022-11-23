@@ -79,6 +79,7 @@ class MultipleViewAdapter() : //RecyclerView.Adapter<RecyclerView.ViewHolder>() 
 
 
 private val DIFF_UTIL_RECENT = object : DiffUtil.ItemCallback<MultipleViewData>() {
+
     override fun areItemsTheSame(
         oldItem: MultipleViewData,
         newItem: MultipleViewData
